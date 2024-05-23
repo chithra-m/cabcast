@@ -1,0 +1,21 @@
+﻿CREATE TABLE [Rides].[RideInfo]
+(
+    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [DriverRouteInfoId] UNIQUEIDENTIFIER NOT NULL,
+    [RideDate] DATE NOT NULL,
+    [AvailableSeats] TINYINT NOT NULL,
+    [SequenceId] INT NOT NULL IDENTITY, 
+	[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
+	[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+	[ModifiedBy] UNIQUEIDENTIFIER NULL,
+	[ModifiedDate] DATETIME2 NULL,
+	[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
+    CONSTRAINT [PK_Setup_RideInfo] PRIMARY KEY NONCLUSTERED 
+    (
+       [Id] ASC
+     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+    CONSTRAINT [FK_RideInfo_DriverRouteInfo] FOREIGN KEY ([DriverRouteInfoId]) REFERENCES [Setup].[DriverRouteInfo]([Id])
+	CONSTRAINT [FK_RideInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
+) ON [PRIMARY];
+GO
+CREATE UNIQUE CLUSTERED INDEX [IX_RideInfo_SequenceId] ON [Rides].[RideInfo] ([SequenceId])

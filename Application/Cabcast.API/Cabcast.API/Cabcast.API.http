@@ -1,0 +1,6 @@
+@Cabcast.API_HostAddress = http://localhost:5106
+
+GET {{Cabcast.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

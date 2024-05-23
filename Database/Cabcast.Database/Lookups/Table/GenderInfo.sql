@@ -1,0 +1,14 @@
+﻿CREATE TABLE [Lookups].[GenderInfo]
+(
+	[Gender] NVARCHAR(15) NOT NULL,
+	[GenderValue] NVARCHAR(15) NOT NULL,
+	[SequenceId] INT IDENTITY(1,1) NOT NULL,
+	[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
+	CONSTRAINT [PK_Lookups_GenderInfo] PRIMARY KEY NONCLUSTERED 
+	(
+		[Gender] ASC
+	) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	CONSTRAINT [FK_GenderInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
+) ON [PRIMARY];
+GO
+CREATE UNIQUE CLUSTERED INDEX [IX_GenderInfo_SequenceId] ON [Lookups].[GenderInfo] ([SequenceId])
