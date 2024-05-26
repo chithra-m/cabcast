@@ -2,6 +2,7 @@
 (
     [Id] UNIQUEIDENTIFIER NOT NULL,
     [UserInfoId] UNIQUEIDENTIFIER NOT NULL,
+    [HomeLocationInfoId] UNIQUEIDENTIFIER NOT NULL,
     [DepartureTime] TIME(0) NOT NULL,
     [SequenceId] INT NOT NULL IDENTITY, 
 	[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
@@ -14,6 +15,7 @@
        [Id] ASC
      )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
     CONSTRAINT [FK_PassengerInfo_UserInfo] FOREIGN KEY ([UserInfoId]) REFERENCES [Account].[UserInfo]([Id])
+    CONSTRAINT [FK_PassengerInfo_LocationInfo] FOREIGN KEY ([HomeLocationInfoId]) REFERENCES [Location].[LocationInfo]([Id])
     CONSTRAINT [FK_PassengerInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
 ) ON [PRIMARY];
 GO

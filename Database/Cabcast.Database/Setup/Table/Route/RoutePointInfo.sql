@@ -2,7 +2,7 @@
 (
     [Id] UNIQUEIDENTIFIER NOT NULL,
     [RouteInfoId] UNIQUEIDENTIFIER NOT NULL,
-    [LocationSpotInfoId] UNIQUEIDENTIFIER NOT NULL,
+    [LocationInfoId] UNIQUEIDENTIFIER NOT NULL,
     [RouteOrderNumber] INT NOT NULL, 
     [SequenceId] INT NOT NULL IDENTITY, 
 	[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
@@ -15,7 +15,7 @@
        [Id] ASC
     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	CONSTRAINT [FK_RoutePointInfo_RouteInfo] FOREIGN KEY ([RouteInfoId]) REFERENCES [Setup].[RouteInfo]([Id]),
-	CONSTRAINT [FK_RoutePointInfo_LocationSpotInfo] FOREIGN KEY ([LocationSpotInfoId]) REFERENCES [Setup].[LocationSpotInfo]([Id]),
+	CONSTRAINT [FK_RoutePointInfo_LocationInfo] FOREIGN KEY ([LocationInfoId]) REFERENCES [Location].[LocationInfo]([Id]),
     CONSTRAINT [FK_RoutePointInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
 ) ON [PRIMARY];
 GO

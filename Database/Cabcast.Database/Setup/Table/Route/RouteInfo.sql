@@ -15,8 +15,8 @@
     (
        [Id] ASC
      )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-    CONSTRAINT [FK_RouteInfo_StartLocation] FOREIGN KEY ([StartLocation]) REFERENCES [Setup].[LocationSpotInfo]([Id])
-    CONSTRAINT [FK_RouteInfo_EndLocation] FOREIGN KEY ([EndLocation]) REFERENCES [Setup].[LocationSpotInfo]([Id])
+    CONSTRAINT [FK_RouteInfo_StartLocation] FOREIGN KEY ([StartLocation]) REFERENCES [Location].[LocationInfo]([Id])
+    CONSTRAINT [FK_RouteInfo_EndLocation] FOREIGN KEY ([EndLocation]) REFERENCES [Location].[LocationInfo]([Id])
     CONSTRAINT [FK_RouteInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
 ) ON [PRIMARY];
 GO

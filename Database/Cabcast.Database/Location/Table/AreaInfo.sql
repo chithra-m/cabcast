@@ -1,17 +1,18 @@
-﻿CREATE TABLE [Setup].[RouteAreaInfo]
+﻿CREATE TABLE [Location].[AreaInfo]
 (
     [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR(25) NOT NULL,
     [SequenceId] INT NOT NULL IDENTITY, 
 	[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
 	[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
 	[ModifiedBy] UNIQUEIDENTIFIER NULL,
 	[ModifiedDate] DATETIME2 NULL,
 	[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
-    CONSTRAINT [PK_Setup_RouteAreaInfo] PRIMARY KEY NONCLUSTERED 
+    CONSTRAINT [PK_Location_AreaInfo] PRIMARY KEY NONCLUSTERED 
     (
        [Id] ASC
      )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-    CONSTRAINT [FK_RouteAreaInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
+    CONSTRAINT [FK_AreaInfo_RowStatusInfo] FOREIGN KEY ([RowStatus]) REFERENCES [Metadata].[RowStatusInfo]([RowStatus])
 ) ON [PRIMARY];
 GO
-CREATE UNIQUE CLUSTERED INDEX [IX_RouteAreaInfo_SequenceId] ON [Setup].[RouteAreaInfo] ([SequenceId])
+CREATE UNIQUE CLUSTERED INDEX [IX_AreaInfo_SequenceId] ON [Location].[AreaInfo] ([SequenceId])

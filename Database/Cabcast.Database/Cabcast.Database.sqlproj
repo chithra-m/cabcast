@@ -72,6 +72,12 @@
     <Folder Include="Rides\Table" />
     <Folder Include="Lookups\StoredProcedure" />
     <Folder Include="Auth\ScalarFunction" />
+    <Folder Include="Setup\StoredProcedure" />
+    <Folder Include="Setup\StoredProcedure\Passenger" />
+    <Folder Include="Location" />
+    <Folder Include="Location\Table" />
+    <Folder Include="Setup\StoredProcedure\Driver" />
+    <Folder Include="Setup\StoredProcedure\Route" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Account.sql" />
@@ -92,10 +98,7 @@
     <Build Include="Account\Table\UserInfo.sql" />
     <Build Include="Setup\Table\Driver\DriverRouteInfo.sql" />
     <Build Include="Setup\Table\Passenger\PassengerInfo.sql" />
-    <Build Include="Setup\Table\Route\LocationSpotInfo.sql" />
     <Build Include="Setup\Table\Route\RouteInfo.sql" />
-    <Build Include="Setup\Table\Route\RouteAreaInfo.sql" />
-    <Build Include="Setup\Table\Route\RouteSubAreaInfo.sql" />
     <Build Include="Lookups\Table\VehicleTypeInfo.sql" />
     <Build Include="Lookups\Table\GenderInfo.sql" />
     <Build Include="Setup\Table\Route\RoutePointInfo.sql" />
@@ -105,5 +108,14 @@
     <Build Include="Lookups\Table\BookingStatusInfo.sql" />
     <Build Include="Lookups\StoredProcedure\usp_v1_VehicleTypeInfo_Get.sql" />
     <Build Include="Auth\ScalarFunction\udp_v1_ValidateLoggedInUser.sql" />
+    <Build Include="Setup\StoredProcedure\Passenger\usp_v1_PassengerInfo_Get.sql" />
+    <Build Include="Schema\Location.sql" />
+    <Build Include="Location\Table\LocationInfo.sql" />
+    <Build Include="Location\Table\AreaInfo.sql" />
+    <Build Include="Location\Table\SubAreaInfo.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverInfo_Get.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverRouteInfo_Get.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverVehicleInfo_Get.sql" />
+    <Build Include="Setup\StoredProcedure\Route\usp_v1_RouteInfo_Get.sql" />
   </ItemGroup>
 </Project>
