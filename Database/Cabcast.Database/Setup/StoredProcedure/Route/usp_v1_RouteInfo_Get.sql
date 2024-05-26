@@ -1,0 +1,38 @@
+CREATE PROCEDURE [Setup].[usp_V1_RouteInfo_Get]
+	@LoggedInUserId UNIQUEIDENTIFIER
+
+AS
+DECLARE @EmptyGuid UNIQUEIDENTIFIER;
+SET @EmptyGuid = CAST(CAST(0 AS BINARY) AS UNIQUEIDENTIFIER);
+
+BEGIN TRY 
+
+	IF([Auth].[udp_v1_ValidateLoggedInUser](@LoggedInUserId) = 0)
+	BEGIN
+		RAISERROR('INVALID_PARAM_LOGGED_IN_USER_ID', 16, 1);
+	END
+
+	DECLARE @RouteInfo TABLE(
+		[Id] UNIQUEIDENTIFIER NOT NULL,
+		[StartLocation] UNIQUEIDENTIFIER NOT NULL, 
+		[EndLocation] UNIQUEIDENTIFIER NOT NULL,
+		[Distance] DECIMAL(10, 2) NOT NULL,
+		[EstimatedDuration] TIME(0) NOT NULL,
+		[SequenceId] INT NOT NULL IDENTITY, 
+		[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
+		[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+		[ModifiedBy] UNIQUEIDENTIFIER NULL,
+		[ModifiedDate] DATETIME2 NULL,
+		[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
+    );
+
+	SELECT * FROM @RouteInfo;
+
+END TRY  
+BEGIN CATCH  
+	DECLARE @ErrorNumber INT = ERROR_NUMBER();  
+	DECLARE @ErrorMessage NVARCHAR(1000) = ERROR_MESSAGE()   
+     
+	-- Raise Exception  
+	RAISERROR('%s', 16, 1, @ErrorMessage)  
+END CATCH;
