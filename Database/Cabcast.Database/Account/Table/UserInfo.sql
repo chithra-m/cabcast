@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [Account].[UserInfo]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL,
-	[AspNetUserId] NVARCHAR(450) NOT NULL,
+	[AspNetUserId] NVARCHAR(36) NOT NULL,
 	[ComcastEmployeeId] NVARCHAR(450) NOT NULL,
 	[FirstName] NVARCHAR(50) NOT NULL,
 	[LastName] NVARCHAR(50) NOT NULL,
