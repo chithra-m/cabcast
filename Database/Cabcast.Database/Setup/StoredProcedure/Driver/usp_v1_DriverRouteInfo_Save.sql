@@ -33,7 +33,7 @@ BEGIN TRY
     IF(@Id IS NULL OR @Id = @EmptyGuid OR NOT EXISTS(SELECT TOP 1 1 FROM [Setup].[DriverRouteInfo] WHERE [Id] = @Id))
 	BEGIN
 		INSERT INTO [Setup].[DriverRouteInfo]
-		([Id], [DriverInfoId], [DriverInfoId], [RouteInfoId], [DepartureTime], [CreatedBy])
+		([Id], [DriverInfoId], [RouteInfoId], [DepartureTime], [CreatedBy])
 		VALUES 
 		(@DriverRouteInfoId, @DriverInfoId, @RouteInfoId, @DepartureTime, @LoggedInUserId);
 	END

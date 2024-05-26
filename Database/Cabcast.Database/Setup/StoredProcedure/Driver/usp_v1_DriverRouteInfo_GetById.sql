@@ -20,35 +20,34 @@ BEGIN TRY
 	END
 
 	DECLARE @DriverRouteInfo TABLE(
-		[Id] UNIQUEIDENTIFIER NOT NULL,
-		[DriverInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[UserInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[AspNetUserId] NVARCHAR(450) NOT NULL,
-		[UserName] [nvarchar](256) NULL,
-		[FirstName] NVARCHAR(50) NOT NULL,
-		[LastName] NVARCHAR(50) NOT NULL,
-		[PhoneNumber] [nvarchar](max) NULL,
-		[Gender] NVARCHAR(15) NOT NULL,
-		[GenderValue] NVARCHAR(15) NOT NULL,
-		[ComcastEmployeeId] NVARCHAR(450) NOT NULL,
-		[HomeLocationInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[DepartureTime] TIME(0) NOT NULL,
-		[RouteInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[StartLocation] UNIQUEIDENTIFIER NOT NULL, -- EITHER START OR END MUST BE OFFICE LOCATION
-		[EndLocation] UNIQUEIDENTIFIER NOT NULL,
-		[SequenceId] INT NOT NULL IDENTITY, 
-		[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
-		[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
-		[ModifiedBy] UNIQUEIDENTIFIER NULL,
-		[ModifiedDate] DATETIME2 NULL,
-		[RowStatus] NVARCHAR(1) NOT NULL
+		[Id] UNIQUEIDENTIFIER,
+		[DriverInfoId] UNIQUEIDENTIFIER,
+		[UserInfoId] UNIQUEIDENTIFIER,
+		[AspNetUserId] NVARCHAR(36),
+		[ComcastEmployeeId] NVARCHAR(450),
+		[UserName] NVARCHAR(256),
+		[FirstName] NVARCHAR(50),
+		[LastName] NVARCHAR(50),
+		[PhoneNumber] NVARCHAR(MAX),
+		[Gender] NVARCHAR(15),
+		[GenderValue] NVARCHAR(15),
+		[HomeLocationInfoId] UNIQUEIDENTIFIER,
+		[DepartureTime] TIME(0),
+		[RouteInfoId] UNIQUEIDENTIFIER,
+		[StartLocation] UNIQUEIDENTIFIER, -- EITHER START OR END MUST BE OFFICE LOCATION
+		[EndLocation] UNIQUEIDENTIFIER,
+		[SequenceId] INT, 
+		[CreatedBy] UNIQUEIDENTIFIER,	
+		[CreatedDate] DATETIME2,
+		[ModifiedBy] UNIQUEIDENTIFIER,
+		[ModifiedDate] DATETIME2,
+		[RowStatus] NVARCHAR(1)
     );
 
 	INSERT INTO @DriverRouteInfo(
-		[Id], [DriverInfoId], [UserInfoId], [AspNetUserId], [UserName], [FirstName], [LastName], [PhoneNumber],
-		[Gender], [GenderValue], [ComcastEmployeeId], [HomeLocationInfoId], [DepartureTime],
-		[RouteInfoId], [StartLocation], [EndLocation], [Distance],[EstimatedDuration],
-		[SequenceId], [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [RowStatus]
+		[Id], [DriverInfoId], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [UserName], [FirstName], [LastName], [PhoneNumber],
+		[Gender], [GenderValue], [HomeLocationInfoId], [DepartureTime], [RouteInfoId], [StartLocation], [EndLocation], [SequenceId], 
+		[CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [RowStatus]
     )
 	SELECT	
 		[DRI].[Id],

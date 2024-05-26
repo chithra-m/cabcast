@@ -137,6 +137,8 @@
     <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverVehicleInfo_GetById.sql" />
     <Build Include="Location\StoredProcedure\usp_v1_LocationInfo_Get.sql" />
     <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestSave.sql" />
+    <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestCancel.sql" />
+    <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestManageByDriverInfoId.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post.Deployment\Script.PostDeployment.sql" />

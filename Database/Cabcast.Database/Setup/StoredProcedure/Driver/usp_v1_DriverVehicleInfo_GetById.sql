@@ -20,22 +20,22 @@ BEGIN TRY
 	END
 
 	DECLARE @DriverVehicleInfo TABLE(
-		[Id] UNIQUEIDENTIFIER NOT NULL,
-		[DriverInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[UserInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[AspNetUserId] NVARCHAR(450) NOT NULL,
-		[ComcastEmployeeId]  NVARCHAR(450) NOT NULL,
-		[VehicleType] NVARCHAR(15) NOT NULL,
-		[VehicleTypeValue] NVARCHAR(15) NOT NULL,
-		[VehicleNumber] NVARCHAR(10) NOT NULL,
-		[VehicleColor] NVARCHAR(15) NOT NULL,
-		[MaximumSeats] TINYINT NOT NULL,
-		[SequenceId] INT NOT NULL IDENTITY, 
-		[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
-		[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
-		[ModifiedBy] UNIQUEIDENTIFIER NULL,
-		[ModifiedDate] DATETIME2 NULL,
-		[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
+		[Id] UNIQUEIDENTIFIER,
+		[DriverInfoId] UNIQUEIDENTIFIER,
+		[UserInfoId] UNIQUEIDENTIFIER,
+		[AspNetUserId] NVARCHAR(450),
+		[ComcastEmployeeId]  NVARCHAR(450),
+		[VehicleType] NVARCHAR(15),
+		[VehicleTypeValue] NVARCHAR(15),
+		[VehicleNumber] NVARCHAR(10),
+		[VehicleColor] NVARCHAR(15),
+		[MaximumSeats] TINYINT,
+		[SequenceId] INT,
+		[CreatedBy] UNIQUEIDENTIFIER,
+		[CreatedDate] DATETIME2,
+		[ModifiedBy] UNIQUEIDENTIFIER,
+		[ModifiedDate] DATETIME2,
+		[RowStatus] NVARCHAR(1)
     );
 
 	INSERT INTO @DriverVehicleInfo(

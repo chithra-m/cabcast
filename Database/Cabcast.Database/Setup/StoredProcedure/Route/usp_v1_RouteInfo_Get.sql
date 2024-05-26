@@ -13,17 +13,17 @@ BEGIN TRY
 	END
 
 	DECLARE @RouteInfo TABLE(
-		[Id] UNIQUEIDENTIFIER NOT NULL,
-		[StartLocation] UNIQUEIDENTIFIER NOT NULL, 
-		[EndLocation] UNIQUEIDENTIFIER NOT NULL,
-		[Distance] DECIMAL(10, 2) NOT NULL,
-		[EstimatedDuration] TIME(0) NOT NULL,
-		[SequenceId] INT NOT NULL IDENTITY, 
-		[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
-		[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+		[Id] UNIQUEIDENTIFIER,
+		[StartLocation] UNIQUEIDENTIFIER,
+		[EndLocation] UNIQUEIDENTIFIER,
+		[Distance] DECIMAL(10, 2),
+		[EstimatedDuration] TIME(0),
+		[SequenceId] INT,
+		[CreatedBy] UNIQUEIDENTIFIER,
+		[CreatedDate] DATETIME2,
 		[ModifiedBy] UNIQUEIDENTIFIER NULL,
 		[ModifiedDate] DATETIME2 NULL,
-		[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
+		[RowStatus] NVARCHAR(1)
     );
 
 	SELECT * FROM @RouteInfo;

@@ -27,7 +27,7 @@ BEGIN TRY
 
 	DECLARE @IsConfirmed BIT = 0;
 
-	IF(EXISTS(SELECT TOP 1 1 FROM [Rides].[RideBookingInfo] WHERE [Id] LIKE @RideBookingInfoId AND [BookingStatus] LIKE N'Booked'))
+	IF(EXISTS(SELECT TOP 1 1 FROM [Rides].[RideBookingInfo] WHERE [Id] LIKE @RideBookingInfoId AND [BookingStatus] LIKE N'ACCEPTED'))
 	BEGIN
 		SET @IsConfirmed = 1;
 	END

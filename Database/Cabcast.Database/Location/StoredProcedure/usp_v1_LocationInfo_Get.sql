@@ -10,25 +10,26 @@ BEGIN TRY
 	END
 
 	DECLARE @LocationInfo TABLE(
-		[Id] UNIQUEIDENTIFIER NOT NULL,
-		[Name] NVARCHAR(50) NOT NULL,
-		[AddressLine] NVARCHAR(50) NOT NULL,
-		[SubAreaInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[AreaInfoId] UNIQUEIDENTIFIER NOT NULL,
-		[Pincode] NVARCHAR(6) NOT NULL,
-		[DistanceFromOfficeInKM] TINYINT NOT NULL,
-		[DurationByOffice] TIME(0) NOT NULL,
-		[SequenceId] INT NOT NULL IDENTITY, 
-		[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
-		[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
-		[ModifiedBy] UNIQUEIDENTIFIER NULL,
-		[ModifiedDate] DATETIME2 NULL,
-		[RowStatus] NVARCHAR(1) NOT NULL DEFAULT 'A'
+		[Id] UNIQUEIDENTIFIER,
+		[Name] NVARCHAR(50),
+		[AddressLine] NVARCHAR(50),
+		[SubAreaInfoId] UNIQUEIDENTIFIER,
+		[SubAreaInfoName] NVARCHAR(25),
+		[AreaInfoId] UNIQUEIDENTIFIER,
+		[AreaInfoName] NVARCHAR(25),
+		[Pincode] NVARCHAR(6),
+		[DistanceFromOfficeInKM] TINYINT,
+		[DurationByOffice] TIME(0),
+		[SequenceId] INT, 
+		[CreatedBy] UNIQUEIDENTIFIER,	
+		[CreatedDate] DATETIME2,
+		[ModifiedBy] UNIQUEIDENTIFIER,
+		[ModifiedDate] DATETIME2,
+		[RowStatus] NVARCHAR(1)
     );
 
 
-	INSERT INTO @LocationInfo([Id], [Name], [AddressLine], [SubAreaInfoId], [AreaInfoId], [Pincode], [DistanceFromOfficeInKM], [DurationByOffice], [SequenceId], 
-		[CreatedBy], [CreatedDate],[ModifiedBy], [ModifiedDate], [RowStatus])
+	INSERT INTO @LocationInfo([Id], [Name], [AddressLine], [SubAreaInfoId], [SubAreaInfoName], [AreaInfoId], [AreaInfoName], [Pincode], [DistanceFromOfficeInKM], [DurationByOffice], [SequenceId], [CreatedBy], [CreatedDate],[ModifiedBy], [ModifiedDate], [RowStatus])
 	SELECT	
 		[LI].[Id],
 		[LI].[Name],
