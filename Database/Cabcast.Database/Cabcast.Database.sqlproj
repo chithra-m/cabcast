@@ -78,6 +78,13 @@
     <Folder Include="Location\Table" />
     <Folder Include="Setup\StoredProcedure\Driver" />
     <Folder Include="Setup\StoredProcedure\Route" />
+    <Folder Include="Rides\StoredProcedure" />
+    <Folder Include="Rides\StoredProcedure\Ride" />
+    <Folder Include="Location\ScalarFunction" />
+    <Folder Include="Account\StoredProcedure" />
+    <Folder Include="Post.Deployment" />
+    <Folder Include="Location\StoredProcedure" />
+    <Folder Include="Rides\StoredProcedure\RideBooking" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Account.sql" />
@@ -117,5 +124,21 @@
     <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverRouteInfo_Get.sql" />
     <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverVehicleInfo_Get.sql" />
     <Build Include="Setup\StoredProcedure\Route\usp_v1_RouteInfo_Get.sql" />
+    <Build Include="Rides\StoredProcedure\Ride\usp_v1_RideInfo_Get.sql" />
+    <Build Include="Location\ScalarFunction\udp_v1_ValidateLocationInfo.sql" />
+    <Build Include="Account\StoredProcedure\usp_v1_UserInfo_Save.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverInfo_Save.sql" />
+    <Build Include="Setup\StoredProcedure\Passenger\usp_v1_PassengerInfo_Save.sql" />
+    <Build Include="Setup\StoredProcedure\Passenger\usp_v1_PassengerInfo_GetById.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverVehicleInfo_Save.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverRouteInfo_Save.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverInfo_GetById.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverRouteInfo_GetById.sql" />
+    <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverVehicleInfo_GetById.sql" />
+    <Build Include="Location\StoredProcedure\usp_v1_LocationInfo_Get.sql" />
+    <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestSave.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Post.Deployment\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

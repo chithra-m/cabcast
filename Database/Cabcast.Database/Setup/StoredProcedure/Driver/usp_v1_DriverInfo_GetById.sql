@@ -1,4 +1,5 @@
-CREATE PROCEDURE [Setup].[usp_V1_DriverInfo_Get]
+﻿CREATE PROCEDURE [Setup].[usp_v1_DriverInfo_GetById]
+	@Id UNIQUEIDENTIFIER,
 	@LoggedInUserId UNIQUEIDENTIFIER
 
 AS
@@ -88,8 +89,7 @@ BEGIN TRY
 	LEFT JOIN [Location].[SubAreaInfo] [SAI] ON [SAI].Id = [DI].[Id]
 	LEFT JOIN [Location].[AreaInfo] [AI] ON [AI].Id = [DI].[Id]
 	LEFT JOIN [Location].[LocationInfo] [LI] ON [DI].[HomeLocationInfoId] = [LI].[Id]
-	WHERE [DI].[RowStatus] = 'A' AND [DI].CreatedBy = @LoggedInUserId
-	ORDER BY [UI].[FirstName];
+	WHERE [DI].[Id] = @Id AND [DI].[RowStatus] = 'A' AND [DI].CreatedBy = @LoggedInUserId;
 
 	SELECT * FROM @DriverInfo;
 

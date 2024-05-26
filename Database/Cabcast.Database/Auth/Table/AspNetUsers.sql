@@ -8,7 +8,7 @@
 	[PasswordHash] [nvarchar](max) NULL,
 	[SecurityStamp] [nvarchar](max) NULL,
 	[ConcurrencyStamp] [nvarchar](max) NULL,
-	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](10) NULL,
 	[PhoneNumberConfirmed] [bit] NOT NULL,
 	[TwoFactorEnabled] [bit] NOT NULL,
 	[LockoutEnd] [datetimeoffset](7) NULL,

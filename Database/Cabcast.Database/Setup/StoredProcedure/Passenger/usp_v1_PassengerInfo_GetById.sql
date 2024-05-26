@@ -1,4 +1,5 @@
-CREATE PROCEDURE [Setup].[usp_V1_DriverInfo_Get]
+﻿CREATE PROCEDURE [Setup].[usp_V1_PassengerInfo_GetById]
+	@Id UNIQUEIDENTIFIER,
 	@LoggedInUserId UNIQUEIDENTIFIER
 
 AS
@@ -12,19 +13,18 @@ BEGIN TRY
 		RAISERROR('INVALID_PARAM_LOGGED_IN_USER_ID', 16, 1);
 	END
 
-	DECLARE @DriverInfo TABLE(
-		[Id] UNIQUEIDENTIFIER NOT NULL,
+	DECLARE @PassengerInfo TABLE(
+		[Id] UNIQUEIDENTIFIER,
 		[UserInfoId] UNIQUEIDENTIFIER NOT NULL,
 		[AspNetUserId] NVARCHAR(450) NOT NULL,
-		[ComcastEmployeeId]  NVARCHAR(450) NOT NULL,
+		[ComcastEmployeeId] NVARCHAR(450) NOT NULL,
 		[UserName] [nvarchar](256) NULL,
 		[FirstName] NVARCHAR(50) NOT NULL,
 		[LastName] NVARCHAR(50) NOT NULL,
 		[Email] [nvarchar](256) NULL,
-		[PhoneNumber] [nvarchar](max) NULL,
+		[PhoneNumber] [nvarchar](10) NULL,
 		[Gender] NVARCHAR(15) NOT NULL,
 		[GenderValue] NVARCHAR(15) NOT NULL,
-		[LicenseNumber] NVARCHAR(20) UNIQUE NULL,
 		[ManagerId] UNIQUEIDENTIFIER NOT NULL,
 		[ManagerFirstName] NVARCHAR(50) NOT NULL,
 		[ManagerLastName] NVARCHAR(50) NOT NULL,
@@ -35,25 +35,24 @@ BEGIN TRY
 		[HomeLocationInfoSubAreaInfoName] NVARCHAR(25) NOT NULL,
 		[HomeLocationInfoAreaInfoId] UNIQUEIDENTIFIER NOT NULL,
 		[HomeLocationInfoAreaInfoName] NVARCHAR(25) NOT NULL,
-		[HomeLocationInfoPincode] NVARCHAR(6) NOT NULL,    
-		[SequenceId] INT NOT NULL IDENTITY, 
-		[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
-		[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
-		[ModifiedBy] UNIQUEIDENTIFIER NULL,
-		[ModifiedDate] DATETIME2 NULL,
-		[RowStatus] NVARCHAR(1) NOT NULL 
-    );
+		[HomeLocationInfoPincode] NVARCHAR(6) NOT NULL,
+		[DepartureTime] TIME(0) NOT NULL,
+		[SequenceId] INT,
+		[CreatedBy] UNIQUEIDENTIFIER,
+		[CreatedDate] DATETIME2,
+		[ModifiedBy] UNIQUEIDENTIFIER,
+		[ModifiedDate] DATETIME2,
+		[RowStatus] NVARCHAR(1)
+	);
 
-	INSERT INTO @DriverInfo(
-		[Id], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [UserName], [FirstName], [LastName], [Email], [PhoneNumber],
-		[Gender], [GenderValue], [LicenseNumber], [ManagerId], [ManagerFirstName], [ManagerLastName],
-		[HomeLocationInfoId], [HomeLocationInfoName], [HomeLocationInfoAddressLine],[HomeLocationInfoSubAreaInfoId],
-		[HomeLocationInfoSubAreaInfoName], [HomeLocationInfoAreaInfoId], [HomeLocationInfoAreaInfoName],[HomeLocationInfoPincode],    
-		[SequenceId], [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [RowStatus]
-    )
+	INSERT INTO @PassengerInfo([Id], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [UserName], [Email], [PhoneNumber]
+	, [FirstName], [LastName], [Gender], [GenderValue], [ManagerId], [ManagerFirstName], [ManagerLastName]
+	, [HomeLocationInfoId], [HomeLocationInfoName], [HomeLocationInfoAddressLine], [HomeLocationInfoSubAreaInfoId], [HomeLocationInfoSubAreaInfoName]
+	, [HomeLocationInfoAreaInfoId], [HomeLocationInfoAreaInfoName], [HomeLocationInfoPincode], [DepartureTime], [SequenceId], [CreatedBy], [CreatedDate]
+	, [ModifiedBy], [ModifiedDate], [RowStatus])
 	SELECT	
-	[DI].[Id],
-	[DI].[UserInfoId],
+	[PI].[Id], 
+	[PI].[UserInfoId],
 	[UI].[AspNetUserId],
 	[UI].[ComcastEmployeeId],
 	[ANU].[UserName],
@@ -66,7 +65,7 @@ BEGIN TRY
 	[UI].[ManagerId],
 	[MI].[FirstName],
 	[MI].[LastName],
-	[DI].[HomeLocationInfoId],
+	[PI].[HomeLocationInfoId],
 	[LI].[Name],
 	[LI].[AddressLine],
 	[LI].[SubAreaInfoId],
@@ -74,24 +73,24 @@ BEGIN TRY
 	[LI].[AreaInfoId],
 	[AI].[Name],
 	[LI].[Pincode],
-	[DI].[SequenceId],
-	[DI].[CreatedBy],
-	[DI].[CreatedDate],
-	[DI].[ModifiedBy],
-	[DI].[ModifiedDate],
-	[DI].[RowStatus]
-	FROM [Setup].[DriverInfo] [DI]
-	LEFT JOIN [Account].[UserInfo] [UI] ON [UI].[Id] = [DI].[UserInfoId]
+	[PI].[DepartureTime],
+	[PI].[SequenceId],
+	[PI].[CreatedBy],
+	[PI].[CreatedDate],
+	[PI].[ModifiedBy],
+	[PI].[ModifiedDate],
+	[PI].[RowStatus]
+	FROM [Setup].[PassengerInfo] [PI]
+	LEFT JOIN [Account].[UserInfo] [UI] ON [UI].[Id] = [PI].[UserInfoId]
 	LEFT JOIN [Auth].[AspNetUsers] [ANU] ON [UI].[Id] = [ANU].[Id]
 	LEFT JOIN [Lookups].[GenderInfo] [GI] ON [UI].[Gender] = [GI].[Gender]
 	LEFT JOIN [Account].[UserInfo] [MI] ON [UI].[ManagerId] = [MI].[Id]
-	LEFT JOIN [Location].[SubAreaInfo] [SAI] ON [SAI].Id = [DI].[Id]
-	LEFT JOIN [Location].[AreaInfo] [AI] ON [AI].Id = [DI].[Id]
-	LEFT JOIN [Location].[LocationInfo] [LI] ON [DI].[HomeLocationInfoId] = [LI].[Id]
-	WHERE [DI].[RowStatus] = 'A' AND [DI].CreatedBy = @LoggedInUserId
-	ORDER BY [UI].[FirstName];
+	LEFT JOIN [Location].[SubAreaInfo] [SAI] ON [SAI].Id = [MI].[Id]
+	LEFT JOIN [Location].[AreaInfo] [AI] ON [AI].Id = [MI].[Id]
+	LEFT JOIN [Location].[LocationInfo] [LI] ON [PI].[HomeLocationInfoId] = [LI].[Id]
+	WHERE [PI].[Id] = @Id AND [PI].[RowStatus] = 'A' AND [PI].CreatedBy = @LoggedInUserId
 
-	SELECT * FROM @DriverInfo;
+	SELECT * FROM @PassengerInfo;
 
 END TRY  
 BEGIN CATCH  

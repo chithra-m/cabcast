@@ -1,4 +1,5 @@
-CREATE PROCEDURE [Setup].[usp_V1_DriverVehicleInfo_Get]
+﻿CREATE PROCEDURE [Setup].[usp_V1_DriverVehicleInfo_GetById]
+	@Id UNIQUEIDENTIFIER,
 	@DriverInfoId UNIQUEIDENTIFIER,
 	@LoggedInUserId UNIQUEIDENTIFIER
 
@@ -64,8 +65,7 @@ BEGIN TRY
 	LEFT JOIN [Account].[UserInfo] [UI] ON [UI].[Id] = [DI].[UserInfoId]
 	LEFT JOIN [Auth].[AspNetUsers] [ANU] ON [UI].[Id] = [ANU].[Id]
 	LEFT JOIN [Lookups].[VehicleTypeInfo] [VTI] ON [DVI].[VehicleType] = [VTI].[VehicleType]
-	WHERE [DVI].[DriverInfoId] = @DriverInfoId AND [DVI].[RowStatus] = 'A' AND [DVI].CreatedBy = @LoggedInUserId
-	ORDER BY [UI].[FirstName];
+	WHERE [DVI].[Id] = @Id AND [DVI].[DriverInfoId] = @DriverInfoId AND [DVI].[RowStatus] = 'A' AND [DVI].CreatedBy = @LoggedInUserId
 
 	SELECT * FROM @DriverVehicleInfo;
 

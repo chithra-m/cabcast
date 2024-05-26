@@ -1,4 +1,5 @@
-CREATE PROCEDURE [Setup].[usp_V1_DriverRouteInfo_Get]
+﻿CREATE PROCEDURE [Setup].[usp_V1_DriverRouteInfo_GetById]
+	@Id UNIQUEIDENTIFIER,
 	@DriverInfoId UNIQUEIDENTIFIER,
 	@LoggedInUserId UNIQUEIDENTIFIER
 
@@ -79,8 +80,7 @@ BEGIN TRY
 	LEFT JOIN [Lookups].[GenderInfo] [GI] ON [UI].[Gender] = [GI].[Gender]
 	LEFT JOIN [Account].[UserInfo] [MI] ON [UI].[ManagerId] = [MI].[Id]
 	LEFT JOIN Setup.[RouteInfo] [RI] ON [DRI].[RouteInfoId] = [RI].[Id]
-	WHERE [DRI].[DriverInfoId] = @DriverInfoId AND [DRI].[RowStatus] = 'A' AND [DRI].CreatedBy = @LoggedInUserId
-	ORDER BY [UI].[FirstName];
+	WHERE [DRI].[Id] = @Id AND [DRI].[DriverInfoId] = @DriverInfoId AND [DRI].[RowStatus] = 'A' AND [DRI].CreatedBy = @LoggedInUserId
 
 	SELECT * FROM @DriverRouteInfo;
 
