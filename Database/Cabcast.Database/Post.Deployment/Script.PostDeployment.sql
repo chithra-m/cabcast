@@ -146,3 +146,66 @@ BEGIN
     END    
 END
 GO
+
+--IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES T WHERE T.TABLE_SCHEMA = 'Setup' AND T.TABLE_NAME = 'RouteInfo') 
+--BEGIN
+--    IF NOT EXISTS(SELECT 1 FROM [Setup].[RouteInfo] WHERE [Id] LIKE N'1')
+--    BEGIN
+--        INSERT INTO[Setup].[RouteInfo]([VehicleType], [VehicleTypeValue]) VALUES (N'CAR', N'Car');
+--    END
+--    IF NOT EXISTS(SELECT 1 FROM [Setup].[RouteInfo] WHERE [Id] LIKE N'2')
+--    BEGIN
+--        INSERT INTO [Setup].[RouteInfo]([VehicleType], [VehicleTypeValue]) VALUES (N'BIKE', N'Bike');
+--    END
+--END
+--GO
+
+IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES T WHERE T.TABLE_SCHEMA = 'Location' AND T.TABLE_NAME = 'AreaInfo') 
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM [Location].[AreaInfo] WHERE [Id] LIKE N'7601957B-D037-4886-8C03-74BA9BE80348')
+    BEGIN
+        INSERT INTO [Location].[AreaInfo]([Id], [Name]) VALUES (N'7601957B-D037-4886-8C03-74BA9BE80348', N'Navalur ');
+    END                                    
+    IF NOT EXISTS(SELECT 1 FROM [Location].[AreaInfo] WHERE [Id] LIKE N'D2A0B2CC-F767-47FE-A9BE-94B8E2B1BDC1')
+    BEGIN 
+        INSERT INTO [Location].[AreaInfo]([Id], [Name]) VALUES (N'D2A0B2CC-F767-47FE-A9BE-94B8E2B1BDC1', N'Sithalapakkam');
+    END
+    IF NOT EXISTS(SELECT 1 FROM [Location].[AreaInfo] WHERE [Id] LIKE N'98AF09F2-41E7-44D3-B53F-CA8B1F4457EB')
+    BEGIN 
+        INSERT INTO [Location].[AreaInfo]([Id], [Name]) VALUES (N'98AF09F2-41E7-44D3-B53F-CA8B1F4457EB', N'Sholinganallur');
+    END
+    IF NOT EXISTS(SELECT 1 FROM [Location].[AreaInfo] WHERE [Id] LIKE N'953D3123-9DD3-4FA6-ADFD-A5F1BF8A7A07')
+    BEGIN 
+        INSERT INTO [Location].[AreaInfo]([Id], [Name]) VALUES (N'953D3123-9DD3-4FA6-ADFD-A5F1BF8A7A07', N'Karapakkam');
+    END
+    IF NOT EXISTS(SELECT 1 FROM [Location].[AreaInfo] WHERE [Id] LIKE N'55DF324D-D9C4-4D0B-B9E9-02819489CE94')
+    BEGIN 
+        INSERT INTO [Location].[AreaInfo]([Id], [Name]) VALUES (N'55DF324D-D9C4-4D0B-B9E9-02819489CE94', N'Thoraipakkam');
+    END
+END
+GO
+
+IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES T WHERE T.TABLE_SCHEMA = 'Location' AND T.TABLE_NAME = 'SubAreaInfo') 
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM [Location].[SubAreaInfo] WHERE [Id] LIKE N'7601957B-D037-4886-8C03-74BA9BE80348')
+    BEGIN
+        INSERT INTO [Location].[SubAreaInfo]([Id], [AreaInfoId], [Name]) VALUES (N'7601957B-D037-4886-8C03-74BA9BE80348', N'Navalur ');
+    END                                    
+    IF NOT EXISTS(SELECT 1 FROM [Location].[SubAreaInfo] WHERE [Id] LIKE N'D2A0B2CC-F767-47FE-A9BE-94B8E2B1BDC1')
+    BEGIN 
+        INSERT INTO [Location].[SubAreaInfo]([Id], [AreaInfoId], [Name]) VALUES (N'D2A0B2CC-F767-47FE-A9BE-94B8E2B1BDC1', N'Sithalapakkam');
+    END
+    IF NOT EXISTS(SELECT 1 FROM [Location].[SubAreaInfo] WHERE [Id] LIKE N'98AF09F2-41E7-44D3-B53F-CA8B1F4457EB')
+    BEGIN 
+        INSERT INTO [Location].[SubAreaInfo]([Id], [AreaInfoId], [Name]) VALUES (N'98AF09F2-41E7-44D3-B53F-CA8B1F4457EB', N'Sholinganallur');
+    END
+    IF NOT EXISTS(SELECT 1 FROM [Location].[SubAreaInfo] WHERE [Id] LIKE N'953D3123-9DD3-4FA6-ADFD-A5F1BF8A7A07')
+    BEGIN 
+        INSERT INTO [Location].[SubAreaInfo]([Id], [AreaInfoId], [Name]) VALUES (N'953D3123-9DD3-4FA6-ADFD-A5F1BF8A7A07', N'Karapakkam');
+    END
+    IF NOT EXISTS(SELECT 1 FROM [Location].[SubAreaInfo] WHERE [Id] LIKE N'55DF324D-D9C4-4D0B-B9E9-02819489CE94')
+    BEGIN 
+        INSERT INTO [Location].[SubAreaInfo]([Id], [AreaInfoId], [Name]) VALUES (N'55DF324D-D9C4-4D0B-B9E9-02819489CE94', N'Thoraipakkam');
+    END
+END
+GO
