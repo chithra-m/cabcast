@@ -18,7 +18,6 @@ BEGIN TRY
 		[UserInfoId] UNIQUEIDENTIFIER,
 		[AspNetUserId] NVARCHAR(36),
 		[ComcastEmployeeId] NVARCHAR(450),
-		[UserName] NVARCHAR(256),
 		[FirstName] NVARCHAR(50),
 		[LastName] NVARCHAR(50),
 		[Email] NVARCHAR(256),
@@ -45,7 +44,7 @@ BEGIN TRY
 		[RowStatus] NVARCHAR(1)
 	);
 
-	INSERT INTO @PassengerInfo([Id], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [UserName], [Email], [PhoneNumber]
+	INSERT INTO @PassengerInfo([Id], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [Email], [PhoneNumber]
 	, [FirstName], [LastName], [Gender], [GenderValue], [ManagerId], [ManagerFirstName], [ManagerLastName]
 	, [HomeLocationInfoId], [HomeLocationInfoName], [HomeLocationInfoAddressLine], [HomeLocationInfoSubAreaInfoId], [HomeLocationInfoSubAreaInfoName]
 	, [HomeLocationInfoAreaInfoId], [HomeLocationInfoAreaInfoName], [HomeLocationInfoPincode], [DepartureTime], [SequenceId], [CreatedBy], [CreatedDate]
@@ -55,11 +54,10 @@ BEGIN TRY
 	[PI].[UserInfoId],
 	[UI].[AspNetUserId],
 	[UI].[ComcastEmployeeId],
-	[ANU].[UserName],
 	[UI].[FirstName],
 	[UI].[LastName],
-	[ANU].[Email],
-	[ANU].[PhoneNumber],
+	[UI].[Email],
+	[UI].[PhoneNumber],
 	[UI].[Gender],
 	[GI].[GenderValue],
 	[UI].[ManagerId],
@@ -82,7 +80,6 @@ BEGIN TRY
 	[PI].[RowStatus]
 	FROM [Setup].[PassengerInfo] [PI]
 	LEFT JOIN [Account].[UserInfo] [UI] ON [UI].[Id] = [PI].[UserInfoId]
-	LEFT JOIN [Auth].[AspNetUsers] [ANU] ON [UI].[Id] = [ANU].[Id]
 	LEFT JOIN [Lookups].[GenderInfo] [GI] ON [UI].[Gender] = [GI].[Gender]
 	LEFT JOIN [Account].[UserInfo] [MI] ON [UI].[ManagerId] = [MI].[Id]
 	LEFT JOIN [Location].[SubAreaInfo] [SAI] ON [SAI].Id = [MI].[Id]

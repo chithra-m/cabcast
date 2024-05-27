@@ -24,7 +24,6 @@ BEGIN TRY
 		[UserInfoId] UNIQUEIDENTIFIER,
 		[AspNetUserId] NVARCHAR(36),
 		[ComcastEmployeeId] NVARCHAR(450),
-		[UserName] NVARCHAR(256),
 		[FirstName] NVARCHAR(50),
 		[LastName] NVARCHAR(50),
 		[PhoneNumber] NVARCHAR(MAX),
@@ -44,7 +43,7 @@ BEGIN TRY
     );
 
 	INSERT INTO @DriverRouteInfo(
-		[Id], [DriverInfoId], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [UserName], [FirstName], [LastName], [PhoneNumber],
+		[Id], [DriverInfoId], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [FirstName], [LastName], [PhoneNumber],
 		[Gender], [GenderValue], [HomeLocationInfoId], [DepartureTime], [RouteInfoId], [StartLocation], [EndLocation], [SequenceId], 
 		[CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [RowStatus]
     )
@@ -54,10 +53,9 @@ BEGIN TRY
 		[DI].[UserInfoId],
 		[UI].[AspNetUserId],
 		[UI].[ComcastEmployeeId],
-		[ANU].[UserName],
 		[UI].[FirstName],
 		[UI].[LastName],
-		[ANU].[PhoneNumber],
+		[UI].[PhoneNumber],
 		[UI].[Gender],
 		[GI].[GenderValue],
 		[DI].[HomeLocationInfoId],
@@ -74,7 +72,6 @@ BEGIN TRY
 	FROM [Setup].[DriverRouteInfo] [DRI]
 	LEFT JOIN [Setup].[DriverInfo] [DI] ON [DRI].[DriverInfoId] = [DI].[Id]
 	LEFT JOIN [Account].[UserInfo] [UI] ON [UI].[Id] = [DI].[UserInfoId]
-	LEFT JOIN [Auth].[AspNetUsers] [ANU] ON [UI].[Id] = [ANU].[Id]
 	LEFT JOIN [Lookups].[GenderInfo] [GI] ON [UI].[Gender] = [GI].[Gender]
 	LEFT JOIN [Account].[UserInfo] [MI] ON [UI].[ManagerId] = [MI].[Id]
 	LEFT JOIN Setup.[RouteInfo] [RI] ON [DRI].[RouteInfoId] = [RI].[Id]

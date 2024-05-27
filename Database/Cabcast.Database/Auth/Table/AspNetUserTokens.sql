@@ -11,4 +11,4 @@
   CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [Auth].[AspNetUsers]([Id])
 ) ON [PRIMARY];
 GO;
-CREATE UNIQUE INDEX [UserNameIndex] ON [Auth].[AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;
+CREATE UNIQUE INDEX [AspNetUserTokens_UserNameIndex] ON [Auth].[AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;

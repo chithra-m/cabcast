@@ -17,7 +17,6 @@ BEGIN TRY
 		[UserInfoId] UNIQUEIDENTIFIER,
 		[AspNetUserId] NVARCHAR(36),
 		[ComcastEmployeeId] NVARCHAR(450),
-		[UserName] NVARCHAR(256),
 		[FirstName] NVARCHAR(50),
 		[LastName] NVARCHAR(50),
 		[Email] NVARCHAR(256),
@@ -45,7 +44,7 @@ BEGIN TRY
     );
 
 	INSERT INTO @DriverInfo(
-		[Id], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [UserName], [FirstName], [LastName], [Email], [PhoneNumber],
+		[Id], [UserInfoId], [AspNetUserId], [ComcastEmployeeId], [FirstName], [LastName], [Email], [PhoneNumber],
 		[Gender], [GenderValue], [LicenseNumber], [ManagerId], [ManagerFirstName], [ManagerLastName],
 		[HomeLocationInfoId], [HomeLocationInfoName], [HomeLocationInfoAddressLine],[HomeLocationInfoSubAreaInfoId],
 		[HomeLocationInfoSubAreaInfoName], [HomeLocationInfoAreaInfoId], [HomeLocationInfoAreaInfoName],[HomeLocationInfoPincode],    
@@ -56,11 +55,10 @@ BEGIN TRY
 	[DI].[UserInfoId],
 	[UI].[AspNetUserId],
 	[UI].[ComcastEmployeeId],
-	[ANU].[UserName],
 	[UI].[FirstName],
 	[UI].[LastName],
-	[ANU].[Email],
-	[ANU].[PhoneNumber],
+	[UI].[Email],
+	[UI].[PhoneNumber],
 	[UI].[Gender],
 	[GI].[GenderValue],
 	[DI].[LicenseNumber],
@@ -83,7 +81,6 @@ BEGIN TRY
 	[DI].[RowStatus]
 	FROM [Setup].[DriverInfo] [DI]
 	LEFT JOIN [Account].[UserInfo] [UI] ON [UI].[Id] = [DI].[UserInfoId]
-	LEFT JOIN [Auth].[AspNetUsers] [ANU] ON [UI].[Id] = [ANU].[Id]
 	LEFT JOIN [Lookups].[GenderInfo] [GI] ON [UI].[Gender] = [GI].[Gender]
 	LEFT JOIN [Account].[UserInfo] [MI] ON [UI].[ManagerId] = [MI].[Id]
 	LEFT JOIN [Location].[SubAreaInfo] [SAI] ON [SAI].Id = [DI].[Id]
