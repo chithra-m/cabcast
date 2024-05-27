@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -20,7 +21,6 @@
     <Folder Include="DataAccess\IRepositories\Setup\" />
     <Folder Include="DataAccess\Repositories\Location\" />
     <Folder Include="DataAccess\Repositories\Setup\" />
-    <Folder Include="DataEntities\Setup\" />
     <Folder Include="DomainEntities\Setup\" />
     <Folder Include="Mappers\Location\" />
     <Folder Include="Operations\IServices\Location\" />

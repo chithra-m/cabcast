@@ -1,4 +1,7 @@
+using Cabcast.API.Data;
 using Cabcast.API.IoC;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace Cabcast.API
@@ -17,6 +20,14 @@ namespace Cabcast.API
                 string connectionString = config["ConnectionStrings:DefaultConnection"] ?? throw new ArgumentNullException("ConnectionStrings:DefaultConnection is null");
                 
                 builder.Services.InjectDependencies(connectionString);
+
+                // Identity
+                builder.Services.AddDbContext<AuthDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+                builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<AuthDbContext>()
+                    .AddDefaultTokenProviders();
 
                 builder.Services.AddControllers();
                 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cabcast.API", "Cabcast.API\Cabcast.API.csproj", "{C5E646CA-DB51-49C0-A108-9BC36714A541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cabcast.API", "Cabcast.API\Cabcast.API.csproj", "{C5E646CA-DB51-49C0-A108-9BC36714A541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cabcast.Core", "Cabcast.Core\Cabcast.Core.csproj", "{1B33BAC1-9CD2-4E42-B747-420F8C4D328F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cabcast.Core", "Cabcast.Core\Cabcast.Core.csproj", "{1B33BAC1-9CD2-4E42-B747-420F8C4D328F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
