@@ -4,6 +4,7 @@
     [DriverRouteInfoId] UNIQUEIDENTIFIER NOT NULL,
     [RideDate] DATE NOT NULL,
     [AvailableSeats] TINYINT NOT NULL,
+    [IsWomenOnly] BIT NOT NULL DEFAULT 0,
     [SequenceId] INT NOT NULL IDENTITY, 
 	[CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
 	[CreatedDate] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),

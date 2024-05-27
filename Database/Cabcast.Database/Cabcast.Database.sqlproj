@@ -124,7 +124,7 @@
     <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverRouteInfo_Get.sql" />
     <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverVehicleInfo_Get.sql" />
     <Build Include="Setup\StoredProcedure\Route\usp_v1_RouteInfo_Get.sql" />
-    <Build Include="Rides\StoredProcedure\Ride\usp_v1_RideInfo_Get.sql" />
+    <Build Include="Rides\StoredProcedure\Ride\usp_v1_RideInfo_SeacrhByFIlter.sql" />
     <Build Include="Location\ScalarFunction\udp_v1_ValidateLocationInfo.sql" />
     <Build Include="Account\StoredProcedure\usp_v1_UserInfo_Save.sql" />
     <Build Include="Setup\StoredProcedure\Driver\usp_v1_DriverInfo_Save.sql" />
@@ -139,6 +139,9 @@
     <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestSave.sql" />
     <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestCancel.sql" />
     <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_RequestManageByDriverInfoId.sql" />
+    <Build Include="Location\StoredProcedure\usp_v1_AreaInfo_Get.sql" />
+    <Build Include="Location\StoredProcedure\usp_v1_SubAreaInfo_Get.sql" />
+    <Build Include="Rides\StoredProcedure\RideBooking\usp_v1_RideBookingInfo_GetById.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post.Deployment\Script.PostDeployment.sql" />

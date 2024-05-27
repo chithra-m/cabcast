@@ -1,5 +1,6 @@
-﻿CREATE PROCEDURE [Rides].[usp_v1_RideInfo_Get]
+﻿CREATE PROCEDURE [Rides].[usp_v1_RideInfo_SearchByFilter]
 	@PickupLocationInfoId UNIQUEIDENTIFIER,
+	@DropLocationInfoId UNIQUEIDENTIFIER, -- Destination
 	@VehicleType NVARCHAR(15),
 	@RideDate DATE,
 	@DepartureTime TIME(0) = NULL,
@@ -26,6 +27,7 @@ BEGIN TRY
 		[Id] UNIQUEIDENTIFIER,
 		[RideDate] DATE,
 		[AvailableSeats] TINYINT,
+		[IsWomenOnly] BIT,
 		[DriverRouteInfoId] UNIQUEIDENTIFIER,
 		[DriverRouteDriverInfoId] UNIQUEIDENTIFIER,
 		[DriverRouteRouteInfoId] UNIQUEIDENTIFIER,
@@ -57,7 +59,7 @@ BEGIN TRY
     );
 
 	INSERT INTO @RideInfo(
-		[Id], [RideDate], [AvailableSeats], [DriverRouteInfoId], [DriverRouteDriverInfoId], [DriverRouteRouteInfoId], [DriverRouteDepartureTime], [DriverFirstName],
+		[Id], [RideDate], [AvailableSeats], [IsWomenOnly], [DriverRouteInfoId], [DriverRouteDriverInfoId], [DriverRouteRouteInfoId], [DriverRouteDepartureTime], [DriverFirstName],
 		[DriverLastName], [DriverGender], [DriverGenderValue], [DriverHomeLocationInfoId], [DriverHomeLocationInfoName], [DriverHomeLocationInfoAddressLine], 
 		[DriverHomeLocationInfoSubAreaInfoId], [DriverHomeLocationInfoSubAreaInfoName], [DriverHomeLocationInfoAreaInfoId], [DriverHomeLocationInfoAreaInfoName], 
 		[DriverHomeLocationInfoPincode], [DriverHomeLocationInfoDistanceFromOfficeInKM], [DriverHomeLocationInfoDurationByOffice], [DriverVehicleInfoId],
@@ -68,6 +70,7 @@ BEGIN TRY
 	[RI].[Id],
 	[RI].[RideDate],
 	[RI].[AvailableSeats],
+	[RI].[IsWomenOnly],
 	[DRI].[Id],
 	[DRI].[DriverInfoId],
 	[DRI].[RouteInfoId],
@@ -106,7 +109,10 @@ BEGIN TRY
 	LEFT JOIN [Location].[SubAreaInfo] [SAI] ON [SAI].Id = [DI].[Id]
 	LEFT JOIN [Location].[AreaInfo] [AI] ON [AI].Id = [DI].[Id]
 	LEFT JOIN [Location].[LocationInfo] [LI] ON [DI].[HomeLocationInfoId] = [LI].[Id]
-	WHERE [RI].[RideDate] = @RideDate	
+	LEFT JOIN [Location].[RouteInfo] [ROI] ON [RI].[RouteInfoId] = [ROI].[Id]
+	LEFT JOIN [Location].[RoutePointInfo] [RPI] ON [ROI].[Id] = [RPI].[RouteInfoId]
+	WHERE [ROI].[StartLocation] = @PickupLocationInfoId AND [ROI].[EndLocation] = @DropLocationInfoId 
+	AND [RI].[RideDate] = @RideDate	
 	AND [RI].[RowStatus] = 'A' AND [DRI].[RowStatus] = 'A' 
 	AND [DI].[RowStatus] = 'A' AND [DVI].[RowStatus] = 'A'
 	AND [LI].[RowStatus] = 'A' AND [RI].[RowStatus] = 'A' 
@@ -115,7 +121,7 @@ BEGIN TRY
 	IF(@IsWomenDriverOnly = 1)
 	BEGIN
 		DELETE FROM @RideInfo
-		WHERE [DriverGender] != 'FEMALE'
+		WHERE [IsWomenOnly] = 0
 	END
 
 	IF(@VehicleType IS NOT NULL) -- TODO VALIDATION CHECK
