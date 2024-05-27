@@ -11,16 +11,16 @@ BEGIN TRY
 	END
 
 	DECLARE @SubAreaInfo TABLE(
-		[Id] UNIQUEIDENTIFIER NOT NULL,
-        [AreaInfoId] UNIQUEIDENTIFIER NOT NULL,
-        [AreaInfoName] NVARCHAR(25) NOT NULL,
-        [Name] NVARCHAR(25) NOT NULL,
-        [SequenceId] INT NOT NULL IDENTITY, 
-        [CreatedBy] UNIQUEIDENTIFIER NOT NULL,	
-        [CreatedDate] DATETIME2 NOT NULL,
-        [ModifiedBy] UNIQUEIDENTIFIER NULL,
-        [ModifiedDate] DATETIME2 NULL,
-        [RowStatus] NVARCHAR(1) NOT NULL
+		[Id] UNIQUEIDENTIFIER,
+        [AreaInfoId] UNIQUEIDENTIFIER,
+        [AreaInfoName] NVARCHAR(25),
+        [Name] NVARCHAR(25),
+        [SequenceId] INT,
+        [CreatedBy] UNIQUEIDENTIFIER,
+        [CreatedDate] DATETIME2,
+        [ModifiedBy] UNIQUEIDENTIFIER,
+        [ModifiedDate] DATETIME2,
+        [RowStatus] NVARCHAR(1)
     );
 
 	INSERT INTO @SubAreaInfo(
