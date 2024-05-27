@@ -3,6 +3,8 @@
     [Id] UNIQUEIDENTIFIER NOT NULL,
     [DriverRouteInfoId] UNIQUEIDENTIFIER NOT NULL,
     [RideDate] DATE NOT NULL,
+    [StartTime] TIME(0) NOT NULL,
+    [EndTime] TIME(0) NOT NULL,
     [AvailableSeats] TINYINT NOT NULL,
     [IsWomenOnly] BIT NOT NULL DEFAULT 0,
     [SequenceId] INT NOT NULL IDENTITY, 
