@@ -27,6 +27,7 @@ namespace Cabcast.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, response.GetInternalServerErrorResponse());
             }
         }
+
         [HttpGet, Route("~/lookup/gender")]
         public async Task<IActionResult> GetGenderInfoList()
         {

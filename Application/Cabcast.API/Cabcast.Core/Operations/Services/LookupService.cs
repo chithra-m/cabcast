@@ -35,6 +35,7 @@ namespace Cabcast.Core.Operations.Services
                 return response.GetInternalServerErrorResponse();
             }
         }
+
         public async Task<Response<List<BookingStatusInfo>>> GetBookingStatusInfoList(LoggedInUser loggedInUser)
         {
             const string currentMethodName = "GetBookingStatusInfoList";
@@ -60,6 +61,7 @@ namespace Cabcast.Core.Operations.Services
                 return response.GetInternalServerErrorResponse();
             }
         }
+
         public async Task<Response<List<ColorInfo>>> GetColorInfoList(LoggedInUser loggedInUser)
         {
             const string currentMethodName = "GetColorInfoList";
@@ -85,6 +87,7 @@ namespace Cabcast.Core.Operations.Services
                 return response.GetInternalServerErrorResponse();
             }
         }
+
         public async Task<Response<List<GenderInfo>>> GetGenderInfoList(LoggedInUser loggedInUser)
         {
             const string currentMethodName = "GetGenderInfoList";

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\Location\" />
     <Folder Include="Controllers\Setup\" />
   </ItemGroup>
 
