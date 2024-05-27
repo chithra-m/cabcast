@@ -21,7 +21,6 @@
     <Folder Include="DataAccess\IRepositories\Setup\" />
     <Folder Include="DataAccess\Repositories\Location\" />
     <Folder Include="DataAccess\Repositories\Setup\" />
-    <Folder Include="DomainEntities\Setup\" />
     <Folder Include="Mappers\Location\" />
     <Folder Include="Operations\IServices\Location\" />
     <Folder Include="Operations\Services\Location\" />

@@ -1,10 +1,7 @@
-﻿using Cabcast.Core.Common.Model;
-using Cabcast.Core.DomainEntities.Account;
-using Cabcast.Core.DTO.Account;
+﻿using Cabcast.Core.DTO.Account;
 using Cabcast.Core.DTO.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
 
 namespace Cabcast.API.Controllers.Account
 {
@@ -14,6 +11,7 @@ namespace Cabcast.API.Controllers.Account
         ILogger<UserController> logger) : Controller
     {
         [HttpPost, Route("~/user/register")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDTO model)
         {
             try
@@ -25,7 +23,7 @@ namespace Cabcast.API.Controllers.Account
 
                     if (result.Succeeded)
                     {
-                        return Ok(new { message = "User registered successfully!" });
+                        return Ok(Guid.NewGuid());
                     }
 
                     return BadRequest(result.Errors);

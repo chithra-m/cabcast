@@ -8,13 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\Location\**" />
-    <Content Remove="Controllers\Location\**" />
-    <EmbeddedResource Remove="Controllers\Location\**" />
-    <None Remove="Controllers\Location\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
@@ -23,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Setup\" />
+    <Folder Include="Controllers\Location\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
